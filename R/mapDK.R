@@ -30,7 +30,8 @@ mapDK <- function(values = NULL, id = NULL, data,
   detail = "municipal", show_missing = TRUE, sub = NULL,
   sub.plot = NULL,
   guide.label = NULL, map.title = NULL,
-  map.fill = "gray92", map.colour = "black"){
+  map.fill = "gray92", map.colour = "black",
+  map.low="#132B43", map.high="#56B1F7"){
   if (detail == "municipal") {
     shapedata = mapDK::municipality
   }
@@ -187,10 +188,10 @@ mapDK <- function(values = NULL, id = NULL, data,
       map <- geom_polygon(aes_string(fill = "values"))
     }
     if (discrete == TRUE) {
-      scf <- scale_fill_discrete(name = guide.label)
+      scf <- scale_fill_discrete(name = guide.label,low = map.low, high = map.high)
     }
     else {
-      scf <- scale_fill_continuous(name = guide.label)
+      scf <- scale_fill_continuous(name = guide.label,low = map.low, high = map.high)
     }
     plt <- gp + thm + map + scf
   }
